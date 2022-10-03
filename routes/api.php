@@ -25,3 +25,5 @@ Route::group(['prefix' => '/', 'middleware' => 'auth":"api'], function(){
 
 });
 Route::get('/list', [ApiController::class, 'index']);
+Route::post('/create-post', [ApiController::class, 'create']);
+

@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Website;
 use Illuminate\Http\Request;
 use \App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Notification;
+use App\Notifications\EmailNotification;
+
+
 
 class ApiController extends Controller
 {
@@ -44,5 +49,31 @@ class ApiController extends Controller
 
 
 
+    }
+
+    public function create(Request $request){
+       // dd($request);
+        $Post = New Post();
+        $Post->website_id = $request->id;
+        $Post->text = $request->text;
+        $Post->save();
+
+        $user = User::first();
+
+        $project = [
+            'greeting' => 'Hi '.$user->name.',',
+            'body' => 'Your Website Has new Post',
+            'thanks' => 'Thanks',
+            'actionText' => 'View Post',
+            'actionURL' => url('/'),
+            'id' => 57
+        ];
+
+        Notification::send($user, new EmailNotification($project));
+
+        $this->setData([$Post]);
+        $this->setMessage('User Data');
+        //  dd($this);
+        return $this->response();
     }
 }
