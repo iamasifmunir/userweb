@@ -15,7 +15,6 @@ use \App\Http\Controllers\ApiController;
 |
 */
 
-Route::get('/list', [ApiController::class, 'index']);
 
 Route::post('/login', [ApiController::class, 'login']);
 
@@ -25,3 +24,4 @@ Route::group(['prefix' => '/', 'middleware' => 'auth":"api'], function(){
 
 
 });
+Route::get('/list', [ApiController::class, 'index']);

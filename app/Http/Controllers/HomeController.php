@@ -21,9 +21,9 @@ class HomeController extends Controller
 
         $project = [
             'greeting' => 'Hi '.$user->name.',',
-            'body' => 'This is the project assigned to you.',
-            'thanks' => 'Thank you this is from codeanddeploy.com',
-            'actionText' => 'View Project',
+            'body' => 'Your Website Has new Post',
+            'thanks' => 'Thanks',
+            'actionText' => 'View Post',
             'actionURL' => url('/'),
             'id' => 57
         ];
